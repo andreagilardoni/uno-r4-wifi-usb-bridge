@@ -66,6 +66,14 @@ private:
    std::vector<std::uint8_t> clients_ca[MAX_CLIENT_AVAILABLE];
    std::vector<std::uint8_t> clients_cert_pem[MAX_CLIENT_AVAILABLE];
    std::vector<std::uint8_t> clients_key_pem[MAX_CLIENT_AVAILABLE];
+
+   // this vector is a list of function to be called in the run function
+   std::vector<std::function<void()>> tasks;
+
+   inline void addTask(std::function<void()> task) {
+      tasks.push_back(task);
+   }
+
    int udps_num = 0;
    int servers_num = 0;
    int clientsToServer_num = 0;

@@ -69,6 +69,15 @@ CClientWrapper CAtHandler::getClient(int sock) {
 void CAtHandler::run() {
 /* -------------------------------------------------------------------------- */
   at_srv.run();
+
+  // execute all the pending tasks
+  for(auto task: tasks) {
+    task();
+  }
+
+  // empty the tasks vector
+  tasks.erase();
+
   vTaskDelay(1);
 }
 
