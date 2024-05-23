@@ -76,7 +76,7 @@ void CAtHandler::run() {
   }
 
   // empty the tasks vector
-  tasks.erase();
+  tasks.erase(tasks.begin(), tasks.end());
 
   vTaskDelay(1);
 }
