@@ -105,6 +105,7 @@ enum file_op {
 #define _UDPSTOP                 "+UDPSTOP"
 
 #define _FWVERSION               "+FWVERSION"
+#define _FWVERSION_U32           "+FWVERSION_U32"
 
 #define _SOFTAPCONFIG            "+SOFTAPCONFIG"
 #define _SERVERWRITE             "+SERVERWRITE"
@@ -134,7 +135,7 @@ enum file_op {
 #define _PREF_GET             "+PREFGET"
 #define _PREF_LEN             "+PREFLEN"
 #define _PREF_STAT            "+PREFSTAT"
-   
+
 #define _SOFTSE_BEGIN            "+SOFTSEBEGIN"
 #define _SOFTSE_END              "+SOFTSEEND"
 #define _SOFTSE_SERIAL           "+SOFTSE_SERIAL"
