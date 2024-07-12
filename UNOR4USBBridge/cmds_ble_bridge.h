@@ -8,9 +8,8 @@
 extern HCIVirtualTransportClass HCIVirtualTransport;
 
 void CAtHandler::add_cmds_ble_bridge() {
-
    /* ....................................................................... */
-   command_table[_HCI_BEGIN] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::HCI_BEGIN)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       srv.write_response_prompt();
       switch (parser.cmd_mode) {
@@ -25,7 +24,7 @@ void CAtHandler::add_cmds_ble_bridge() {
    };
 
    /* ....................................................................... */
-   command_table[_HCI_END] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::HCI_END)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       srv.write_response_prompt();
       switch (parser.cmd_mode) {
@@ -38,18 +37,18 @@ void CAtHandler::add_cmds_ble_bridge() {
    };
 
    /* ....................................................................... */
-   command_table[_HCI_WAIT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::HCI_WAIT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       srv.write_response_prompt();
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
             if (parser.args.size() != 1) {
-              return chAT::CommandStatus::ERROR;
+               return chAT::CommandStatus::ERROR;
             }
 
             auto &timeout = parser.args[0];
             if (timeout.empty()) {
-              return chAT::CommandStatus::ERROR;
+               return chAT::CommandStatus::ERROR;
             }
             int _timeout = atoi(timeout.c_str());
             HCIVirtualTransport.wait(_timeout);
@@ -60,7 +59,7 @@ void CAtHandler::add_cmds_ble_bridge() {
    };
 
    /* ....................................................................... */
-   command_table[_HCI_AVAILABLE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::HCI_AVAILABLE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Read: {
@@ -75,7 +74,7 @@ void CAtHandler::add_cmds_ble_bridge() {
    };
 
    /* ....................................................................... */
-   command_table[_HCI_READ] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::HCI_READ)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -100,7 +99,7 @@ void CAtHandler::add_cmds_ble_bridge() {
    };
 
    /* ....................................................................... */
-   command_table[_HCI_WRITE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::HCI_WRITE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -145,7 +144,7 @@ void CAtHandler::add_cmds_ble_bridge() {
             }
 
             if (sent < data_received.size()) {
-              return chAT::CommandStatus::ERROR;
+               return chAT::CommandStatus::ERROR;
             }
 
             return chAT::CommandStatus::OK;

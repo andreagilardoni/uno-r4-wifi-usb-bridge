@@ -7,7 +7,7 @@
 void CAtHandler::add_cmds_wifi_softAP() {
 /* -------------------------------------------------------------------------- */   
    /* ....................................................................... */
-   command_table[_BEGINSOFTAP] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::BEGINSOFTAP)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -77,7 +77,7 @@ void CAtHandler::add_cmds_wifi_softAP() {
    };
 
    /* ....................................................................... */
-   command_table[_DISCONNECTSOFTAP] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::DISCONNECTSOFTAP)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -102,7 +102,7 @@ void CAtHandler::add_cmds_wifi_softAP() {
    };
 
    /* ....................................................................... */
-   command_table[_MACSOFTAP] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::MACSOFTAP)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Read: {
@@ -119,7 +119,7 @@ void CAtHandler::add_cmds_wifi_softAP() {
    };
 
    /* ....................................................................... */
-   command_table[_IPSOFTAP] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::IPSOFTAP)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -134,7 +134,7 @@ void CAtHandler::add_cmds_wifi_softAP() {
    };
 
    /* ....................................................................... */
-   command_table[_GETSOFTAPSSID] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::GETSOFTAPSSID)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Read: {
@@ -149,7 +149,7 @@ void CAtHandler::add_cmds_wifi_softAP() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTAPCONFIG] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTAPCONFIG)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {

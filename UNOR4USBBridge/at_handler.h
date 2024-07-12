@@ -1,6 +1,7 @@
 #ifndef ARDUINO_AT_HANDLER_H
 #define ARDUINO_AT_HANDLER_H
 
+#include "commands.h"
 #include "chAT.hpp"
 #include "WiFi.h"
 #include "Server.h"
@@ -71,7 +72,27 @@ private:
    int clientsToServer_num = 0;
    int clients_num = 0;
    int sslclients_num = 0;
-   std::unordered_map<std::string, std::function<chAT::CommandStatus(chAT::Server&, chAT::ATParser&)>> command_table;
+
+   // TODO put this in commands.h
+   static constexpr std::array command_names{
+      _WIFISCAN, _RESET, _RESTART_BOOTLOADER, _GMR, _GENERIC_CMD, _FILESYSTEM, _MOUNTFS, _EXIT, _MODE, _BEGINSTA, _GETSTATUS,
+      _RECONNECT, _DISCONNECT, _BEGINSOFTAP, _MACSTA, _MACSOFTAP, _DISCONNECTSOFTAP, _AUTOCONNECT, _IPSTA, _IPSOFTAP, _IPV6,
+      _GETRSSI, _GETSSID, _GETBSSID, _GETSOFTAPSSID, _HOSTNAME, _BEGINCLIENT, _CLIENTSTATE, _CLIENTCONNECTIP, _CLIENTCONNECTNAME,
+      _CLIENTCONNECT, _CLIENTSEND, _CLIENTRECEIVE, _CLIENTCLOSE, _IPCLIENT, _BEGINSERVER, _CLIENTCONNECTED, _SSLBEGINCLIENT,
+      _SETCAROOT, _SETECCSLOT, _SSLCLIENTSTATE, _SSLCLIENTCONNECTNAME, _SSLCLIENTCONNECT, _SETIP, _GETHOSTBYNAME, _AVAILABLE,
+      _PEEK, _CLIENTFLUSH, _REMOTEIP, _REMOTEPORT, _CLIENTSTATUS, _SOFTRESETWIFI, _SSLCLIENTCONNECTIP, _SSLCLIENTSEND,
+      _SSLCLIENTCLOSE, _SSLIPCLIENT, _SSLCLIENTCONNECTED, _SSLCLIENTRECEIVE, _SSLAVAILABLE, _SSLCLIENTSTATUS, _SSLCLIENTFLUSH,
+      _SSLREMOTEIP, _SSLREMOTEPORT, _SSLPEEK, _SERVERAVAILABLE, _SERVERACCEPT, _SERVEREND, _UDPBEGIN, _UDPBEGINMULTI, _UDPBEGINPACKET,
+      _UDPBEGINPACKETMULTI, _UDPBEGINPACKETNAME, _UDPBEGINPACKETIP, _UDPENDPACKET, _UDPWRITE, _UDPPARSE, _UDPAVAILABLE, _UDPREAD,
+      _UDPPEEK, _UDPFLUSH, _UDPREMOTEIP, _UDPREMOTEPORT, _UDPSTOP, _FWVERSION, _SOFTAPCONFIG, _SERVERWRITE, _HCI_BEGIN, _HCI_END,
+      _HCI_WAIT, _HCI_READ, _HCI_WRITE, _HCI_AVAILABLE, _OTA_SETCAROOT, _OTA_BEGIN, _OTA_DOWNLOAD, _OTA_VERIFY, _OTA_UPDATE,
+      _OTA_RESET, _PREF_BEGIN, _PREF_END, _PREF_CLEAR, _PREF_REMOVE, _PREF_PUT, _PREF_GET, _PREF_LEN, _PREF_STAT, _SOFTSE_BEGIN,
+      _SOFTSE_END, _SOFTSE_SERIAL, _SOFTSE_RND, _SOFTSE_PRI_KEY, _SOFTSE_PUB_KEY, _SOFTSE_WRITE_SLOT, _SOFTSE_READ_SLOT,
+      _SOFTSE_S_V_BUF_SET, _SOFTSE_SIGN_GET, _SOFTSE_VERIFY_GET, _SOFTSE_SHA256_GET,
+   };
+
+   std::array<std::function<chAT::CommandStatus(chAT::Server&, chAT::ATParser&)>, command_names.size()> command_table;
+
    chAT::Server at_srv;
    HardwareSerial *serial;
    uint8_t* cert_in_flash_ptr = nullptr;
@@ -79,12 +100,28 @@ private:
 
    CClientWrapper getClient(int sock);
 
+   chAT::CommandStatus esp_generic_reset(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus esp_generic_restart_bootloader(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus esp_generic_gmr(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus esp_generic_generic_cmd(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus esp_generic_fw_version(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus esp_generic_filesystem(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus esp_generic_mountfs(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus esp_generic_exit(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus esp_generic_soft_reset_wifi(chAT::Server&, chAT::ATParser&);
    void add_cmds_esp_generic();
    void add_cmds_wifi_station();
    void add_cmds_wifi_softAP();
    void add_cmds_wifi_SSL();
    void add_cmds_wifi_netif();
    void add_cmds_wifi_udp();
+
+   chAT::CommandStatus ble_bridge_hci_begin(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus ble_bridge_hci_end(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus ble_bridge_hci_wait(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus ble_bridge_hci_available(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus ble_bridge_hci_read(chAT::Server&, chAT::ATParser&);
+   chAT::CommandStatus ble_bridge_hci_write(chAT::Server&, chAT::ATParser&);
    void add_cmds_ble_bridge();
    void add_cmds_ota();
    void add_cmds_preferences();
@@ -99,7 +136,7 @@ public:
    /* Used by cmds_preferences */
    std::vector<std::uint8_t> pref_buf;
 
-   CAtHandler(HardwareSerial *s);
+   constexpr CAtHandler(HardwareSerial *s);
    CAtHandler() = delete ;
    static void onWiFiEvent(WiFiEvent_t event);
    void run();

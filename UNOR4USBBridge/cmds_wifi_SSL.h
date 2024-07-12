@@ -20,7 +20,7 @@ INCBIN(x509_crt_bundle, PATH_CERT_BUNDLE);
 
 void CAtHandler::add_cmds_wifi_SSL() {
    /* ....................................................................... */
-   command_table[_SSLBEGINCLIENT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLBEGINCLIENT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -50,7 +50,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SETCAROOT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SETCAROOT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -126,7 +126,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SETECCSLOT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SETECCSLOT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -239,7 +239,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLCLIENTSTATE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLCLIENTSTATE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -274,7 +274,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLCLIENTCONNECTNAME] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLCLIENTCONNECTNAME)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -337,7 +337,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
  
    /* ....................................................................... */
-   command_table[_SSLCLIENTCONNECTIP] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLCLIENTCONNECTIP)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -406,7 +406,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLCLIENTCONNECT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLCLIENTCONNECT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -481,7 +481,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLCLIENTSEND] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLCLIENTSEND)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -562,7 +562,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLCLIENTCLOSE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLCLIENTCLOSE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -602,7 +602,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
 
 
    /* ....................................................................... */
-   command_table[_SSLIPCLIENT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLIPCLIENT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -634,7 +634,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLCLIENTCONNECTED] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLCLIENTCONNECTED)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {// write to do the read of a specific list
@@ -667,7 +667,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLCLIENTRECEIVE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLCLIENTRECEIVE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -715,7 +715,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLAVAILABLE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLAVAILABLE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -746,7 +746,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLCLIENTSTATUS] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLCLIENTSTATUS)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          
@@ -777,7 +777,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLCLIENTFLUSH] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLCLIENTFLUSH)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -807,7 +807,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLREMOTEIP] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLREMOTEIP)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -839,7 +839,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
    };
 
    /* ....................................................................... */
-   command_table[_SSLREMOTEPORT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLREMOTEPORT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -871,7 +871,7 @@ void CAtHandler::add_cmds_wifi_SSL() {
 
 
    /* ....................................................................... */
-   command_table[_SSLPEEK] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SSLPEEK)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       
       switch (parser.cmd_mode) {

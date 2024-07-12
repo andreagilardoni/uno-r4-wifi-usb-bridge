@@ -14,7 +14,7 @@ void CAtHandler::add_cmds_wifi_netif() {
 /* -------------------------------------------------------------------------- */   
    
    /* ....................................................................... */
-   command_table[_BEGINCLIENT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::BEGINCLIENT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -75,7 +75,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    
    
    /* ....................................................................... */
-   command_table[_CLIENTSTATE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::CLIENTSTATE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -109,7 +109,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_CLIENTCONNECTIP] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::CLIENTCONNECTIP)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -158,7 +158,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_CLIENTCONNECTNAME] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::CLIENTCONNECTNAME)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -202,7 +202,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
    
    /* ....................................................................... */
-   command_table[_CLIENTCONNECT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::CLIENTCONNECT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -258,7 +258,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_CLIENTSEND] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::CLIENTSEND)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -335,7 +335,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_CLIENTCLOSE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::CLIENTCLOSE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -372,7 +372,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_IPCLIENT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::IPCLIENT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -400,7 +400,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
    
    /* ....................................................................... */
-   command_table[_SERVERWRITE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SERVERWRITE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -481,7 +481,7 @@ void CAtHandler::add_cmds_wifi_netif() {
 
 
    /* ....................................................................... */
-   command_table[_BEGINSERVER] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::BEGINSERVER)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -523,7 +523,7 @@ void CAtHandler::add_cmds_wifi_netif() {
 
 
    /* ....................................................................... */
-   command_table[_SERVERAVAILABLE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SERVERAVAILABLE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -595,7 +595,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_SERVERACCEPT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SERVERACCEPT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -651,7 +651,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_SERVEREND] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SERVEREND)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -690,7 +690,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_CLIENTCONNECTED] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::CLIENTCONNECTED)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {// write to do the read of a specific list
@@ -727,7 +727,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_CLIENTRECEIVE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::CLIENTRECEIVE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -776,7 +776,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_AVAILABLE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::AVAILABLE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -806,7 +806,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_CLIENTSTATUS] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::CLIENTSTATUS)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          
@@ -837,7 +837,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_CLIENTFLUSH] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::CLIENTFLUSH)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -866,7 +866,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_REMOTEIP] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::REMOTEIP)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -896,7 +896,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_REMOTEPORT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::REMOTEPORT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -927,7 +927,7 @@ void CAtHandler::add_cmds_wifi_netif() {
 
 
    /* ....................................................................... */
-   command_table[_PEEK] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::PEEK)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       
       switch (parser.cmd_mode) {
@@ -957,7 +957,7 @@ void CAtHandler::add_cmds_wifi_netif() {
    };
 
    /* ....................................................................... */
-   command_table[_GETHOSTBYNAME] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::GETHOSTBYNAME)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {

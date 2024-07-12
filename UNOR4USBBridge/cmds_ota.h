@@ -9,7 +9,7 @@ Arduino_UNOWIFIR4_OTA OTA;
 
 void CAtHandler::add_cmds_ota() {
    /* ....................................................................... */
-   command_table[_OTA_SETCAROOT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::OTA_SETCAROOT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -45,7 +45,7 @@ void CAtHandler::add_cmds_ota() {
    };
 
    /* ....................................................................... */
-   command_table[_OTA_BEGIN] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::OTA_BEGIN)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -80,7 +80,7 @@ void CAtHandler::add_cmds_ota() {
    };
 
    /* ....................................................................... */
-   command_table[_OTA_DOWNLOAD] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::OTA_DOWNLOAD)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -124,7 +124,7 @@ void CAtHandler::add_cmds_ota() {
    };
 
    /* ....................................................................... */
-   command_table[_OTA_VERIFY] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::OTA_VERIFY)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -141,7 +141,7 @@ void CAtHandler::add_cmds_ota() {
    };
 
    /* ....................................................................... */
-   command_table[_OTA_UPDATE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::OTA_UPDATE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -175,7 +175,7 @@ void CAtHandler::add_cmds_ota() {
    };
 
    /* ....................................................................... */
-   command_table[_OTA_RESET] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::OTA_RESET)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {

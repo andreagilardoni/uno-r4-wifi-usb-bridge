@@ -8,7 +8,7 @@
 void CAtHandler::add_cmds_se() {
 
    /* ....................................................................... */
-   command_table[_SOFTSE_BEGIN] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_BEGIN)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -44,7 +44,7 @@ void CAtHandler::add_cmds_se() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTSE_END] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_END)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -60,7 +60,7 @@ void CAtHandler::add_cmds_se() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTSE_SERIAL] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_SERIAL)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -80,7 +80,7 @@ void CAtHandler::add_cmds_se() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTSE_RND] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_RND)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -106,7 +106,7 @@ void CAtHandler::add_cmds_se() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTSE_PRI_KEY] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_PRI_KEY)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -154,7 +154,7 @@ void CAtHandler::add_cmds_se() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTSE_PUB_KEY] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_PUB_KEY)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -198,7 +198,7 @@ void CAtHandler::add_cmds_se() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTSE_S_V_BUF_SET] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_S_V_BUF_SET)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -235,7 +235,7 @@ void CAtHandler::add_cmds_se() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTSE_SIGN_GET] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_SIGN_GET)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -289,7 +289,7 @@ void CAtHandler::add_cmds_se() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTSE_VERIFY_GET] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_VERIFY_GET)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -334,7 +334,7 @@ void CAtHandler::add_cmds_se() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTSE_SHA256_GET] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_SHA256_GET)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -370,7 +370,7 @@ void CAtHandler::add_cmds_se() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTSE_WRITE_SLOT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_WRITE_SLOT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -408,7 +408,7 @@ void CAtHandler::add_cmds_se() {
    };
 
    /* ....................................................................... */
-   command_table[_SOFTSE_READ_SLOT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::SOFTSE_READ_SLOT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {

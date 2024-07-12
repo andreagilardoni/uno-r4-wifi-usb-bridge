@@ -8,7 +8,7 @@ Preferences pref;
 
 void CAtHandler::add_cmds_preferences() {
    /* ....................................................................... */
-   command_table[_PREF_BEGIN] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::PREF_BEGIN)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -42,7 +42,7 @@ void CAtHandler::add_cmds_preferences() {
    };
 
    /* ....................................................................... */
-   command_table[_PREF_END] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::PREF_END)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -58,7 +58,7 @@ void CAtHandler::add_cmds_preferences() {
    };
 
    /* ....................................................................... */
-   command_table[_PREF_CLEAR] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::PREF_CLEAR)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
@@ -74,7 +74,7 @@ void CAtHandler::add_cmds_preferences() {
    };
 
    /* ....................................................................... */
-   command_table[_PREF_REMOVE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::PREF_REMOVE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -100,7 +100,7 @@ void CAtHandler::add_cmds_preferences() {
    };
 
    /* ....................................................................... */
-   command_table[_PREF_PUT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::PREF_PUT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -201,7 +201,7 @@ void CAtHandler::add_cmds_preferences() {
    };
 
    /* ....................................................................... */
-   command_table[_PREF_GET] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::PREF_GET)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -304,7 +304,7 @@ void CAtHandler::add_cmds_preferences() {
    };
 
    /* ....................................................................... */
-   command_table[_PREF_LEN] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::PREF_LEN)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -329,7 +329,7 @@ void CAtHandler::add_cmds_preferences() {
    };
 
    /* ....................................................................... */
-   command_table[_PREF_STAT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::PREF_STAT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {

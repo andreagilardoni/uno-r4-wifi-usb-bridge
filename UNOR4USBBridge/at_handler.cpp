@@ -1,7 +1,6 @@
 
 
 #include "at_handler.h"
-#include "commands.h"
 #include "cmds_esp_generic.h"
 
 
@@ -18,6 +17,7 @@
 using namespace SudoMaker;
 
 uint8_t CAtHandler::wifi_status = WIFI_ST_IDLE_STATUS;
+
 
 /* -------------------------------------------------------------------------- */
 CClientWrapper CAtHandler::getClient(int sock) {
@@ -75,67 +75,68 @@ void CAtHandler::run() {
 
 
 /* -------------------------------------------------------------------------- */
-CAtHandler::CAtHandler(HardwareSerial *s) : last_server_client_sock(0) {
+constexpr CAtHandler::CAtHandler(HardwareSerial *s) : last_server_client_sock(0), serial(s) {
 /* -------------------------------------------------------------------------- */
 
-  for(int i = 0; i < MAX_CLIENT_AVAILABLE; i++) {
-    clients[i] = nullptr;
-  }
+  // for(int i = 0; i < MAX_CLIENT_AVAILABLE; i++) {
+  //   clients[i] = nullptr;
+  // }
 
-  for(int i = 0; i < MAX_SERVER_AVAILABLE; i++) {
-    serverWiFi[i] = nullptr;
-  }
+  // for(int i = 0; i < MAX_SERVER_AVAILABLE; i++) {
+  //   serverWiFi[i] = nullptr;
+  // }
 
-  for(int i = 0; i < MAX_UDP_AVAILABLE; i++) {
-    udps[i] = nullptr;
-  }
+  // for(int i = 0; i < MAX_UDP_AVAILABLE; i++) {
+  //   udps[i] = nullptr;
+  // }
 
-  for(int i = 0; i < MAX_CLIENT_AVAILABLE; i++) {
-    sslclients[i] = nullptr;
-    clients_ca[i].clear();
-    clients_cert_pem[i].clear();
-    clients_key_pem[i].clear();
-  }
-
-  /* set up serial */
-  serial = s;
+  // for(int i = 0; i < MAX_CLIENT_AVAILABLE; i++) {
+  //   sslclients[i] = nullptr;
+  //   clients_ca[i].clear();
+  //   clients_cert_pem[i].clear();
+  //   clients_key_pem[i].clear();
+  // }
 
   /* set up chatAt server callbacks */
-  at_srv.set_io_callback({
-    .callback_io_read = [this](auto buf, auto len) {
-      if (!serial->available()) {
-        yield();
-        return (unsigned int)0;
-      }
-      return serial->read(buf, min((unsigned int)serial->available(), len));
-    },
-    .callback_io_write = [this](auto buf, auto len) {
-      return serial->write(buf, len);
-    },
-  });
+  // at_srv.set_io_callback({
+  //   .callback_io_read = [this](auto buf, auto len) {
+  //     if (!serial->available()) {
+  //       yield();
+  //       return (unsigned int)0;
+  //     }
+  //     return serial->read(buf, min((unsigned int)serial->available(), len));
+  //   },
+  //   .callback_io_write = [this](auto buf, auto len) {
+  //     return serial->write(buf, len);
+  //   },
+  // });
 
-  at_srv.set_command_callback([this](chAT::Server & srv, const std::string & command) {
-    auto it = command_table.find(command);
+  // at_srv.set_command_callback([this](chAT::Server & srv, const std::string & command) {
+  //   int i = 0;
+  //   for(; i < command_names.size(); i++) {
+  //     if(command.compare(command_names[i]) == 0) {
+  //       break;
+  //     }
+  //   }
 
-    if (it == command_table.end()) {
-      return chAT::CommandStatus::ERROR;
-    }
-    else {
-      auto res = it->second(srv, srv.parser());
-      log_i("> Called %s \tres %d", it->first.c_str(), res);
-      return res;
-    }
-  });
+  //   if (i == command_names.size()) {
+  //     return chAT::CommandStatus::ERROR;
+  //   }
 
-  /*  SET UP COMMAND TABLE */
-  add_cmds_esp_generic();
-  add_cmds_wifi_station();
-  add_cmds_wifi_softAP();
-  add_cmds_wifi_SSL();
-  add_cmds_wifi_netif();
-  add_cmds_wifi_udp();
-  add_cmds_ble_bridge();
-  add_cmds_ota();
-  add_cmds_preferences();
-  add_cmds_se();
+  //   auto res = command_table[i](srv, srv.parser());
+  //   log_i("> Called %s \tres %d", it->first.c_str(), res);
+  //   return res;
+  // });
+
+  // /*  SET UP COMMAND TABLE */
+  // add_cmds_esp_generic();
+  // add_cmds_wifi_station();
+  // add_cmds_wifi_softAP();
+  // add_cmds_wifi_SSL();
+  // add_cmds_wifi_netif();
+  // add_cmds_wifi_udp();
+  // add_cmds_ble_bridge();
+  // add_cmds_ota();
+  // add_cmds_preferences();
+  // add_cmds_se();
 }

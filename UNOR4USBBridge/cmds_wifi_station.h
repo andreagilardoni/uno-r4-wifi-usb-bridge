@@ -5,16 +5,16 @@
 
 /* -------------------------------------------------------------------------- */
 void CAtHandler::add_cmds_wifi_station() {
-/* -------------------------------------------------------------------------- */   
-   
+/* -------------------------------------------------------------------------- */
+
    /* ....................................................................... */
-   command_table[_WIFISCAN] = [this](auto & srv, auto & parser) {
-   /* ....................................................................... */     
+   command_table[static_cast<int>(Commands::WIFISCAN)] =  [this](auto & srv, auto & parser) {
+   /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
             int n = WiFi.scanNetworks();
             if (n == 0) {
-            } 
+            }
             else {
                String scan_results = "";
 
@@ -34,35 +34,35 @@ void CAtHandler::add_cmds_wifi_station() {
                   scan_results += WiFi.SSID(i) + " | " + bssid + " | " + String(WiFi.RSSI(i)) + " | " + String(WiFi.channel(i)) + " | ";
                   switch (WiFi.encryptionType(i)) {
                      case WIFI_AUTH_OPEN:
-                       scan_results += "open\r\n";
-                       break;
+                        scan_results += "open\r\n";
+                        break;
                      case WIFI_AUTH_WEP:
-                       scan_results += "WEP\r\n";
-                       break;
+                        scan_results += "WEP\r\n";
+                        break;
                      case WIFI_AUTH_WPA_PSK:
-                       scan_results += "WPA\r\n";
-                       break;
+                        scan_results += "WPA\r\n";
+                        break;
                      case WIFI_AUTH_WPA2_PSK:
-                       scan_results += "WPA2\r\n";
-                       break;
+                        scan_results += "WPA2\r\n";
+                        break;
                      case WIFI_AUTH_WPA_WPA2_PSK:
-                       scan_results += "WPA+WPA2\r\n";
-                       break;
+                        scan_results += "WPA+WPA2\r\n";
+                        break;
                      case WIFI_AUTH_WPA2_ENTERPRISE:
-                       scan_results += "WPA2-EAP\r\n";
-                       break;
+                        scan_results += "WPA2-EAP\r\n";
+                        break;
                      case WIFI_AUTH_WPA3_PSK:
-                       scan_results += "WPA3\r\n";
-                       break;
+                        scan_results += "WPA3\r\n";
+                        break;
                      case WIFI_AUTH_WPA2_WPA3_PSK:
-                       scan_results += "WPA2+WPA3\r\n";
-                       break;
+                        scan_results += "WPA2+WPA3\r\n";
+                        break;
                      case WIFI_AUTH_WAPI_PSK:
-                       scan_results += "WAPI\r\n";
-                       break;
+                        scan_results += "WAPI\r\n";
+                        break;
                      default:
-                       scan_results += "unknown\r\n";
-                  } 
+                        scan_results += "unknown\r\n";
+                  }
                }
                String st(scan_results.length());
                srv.write_str((const char *)(st.c_str()));
@@ -77,8 +77,8 @@ void CAtHandler::add_cmds_wifi_station() {
    };
 
    /* ....................................................................... */
-   command_table[_GETSTATUS] = [this](auto & srv, auto & parser) {
-   /* ....................................................................... */     
+   command_table[static_cast<int>(Commands::GETSTATUS)] =  [this](auto & srv, auto & parser) {
+   /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Read: {
             srv.write_response_prompt();
@@ -96,11 +96,11 @@ void CAtHandler::add_cmds_wifi_station() {
       }
    };
 
-   /* This command sets the Ips: Ip address, gateway, netmask 
+   /* This command sets the Ips: Ip address, gateway, netmask
       It is required that all that Ip adresses are provided */
    /* ....................................................................... */
-   command_table[_SETIP] = [this](auto & srv, auto & parser) {
-   /* ....................................................................... */     
+   command_table[static_cast<int>(Commands::SETIP)] =  [this](auto & srv, auto & parser) {
+   /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
             if (parser.args.size() <= 0 || parser.args.size() > 5) {
@@ -145,7 +145,7 @@ void CAtHandler::add_cmds_wifi_station() {
             }
             /* 1 dns server is provided */
             else if(parser.args.size() == 4) {
-               
+
                auto &dns1 = parser.args[3];
                if(dns1.empty()) {
                   return chAT::CommandStatus::ERROR;
@@ -195,8 +195,8 @@ void CAtHandler::add_cmds_wifi_station() {
    };
 
    /* ....................................................................... */
-   command_table[_MODE] = [this](auto & srv, auto & parser) {
-   /* ....................................................................... */     
+   command_table[static_cast<int>(Commands::MODE)] =  [this](auto & srv, auto & parser) {
+   /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
             if (parser.args.size() <= 0 || parser.args.size() > 2) {
@@ -250,18 +250,18 @@ void CAtHandler::add_cmds_wifi_station() {
          }
          default:
             return chAT::CommandStatus::ERROR;
-      }    
+      }
    };
 
    /* ....................................................................... */
-   command_table[_BEGINSTA] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::BEGINSTA)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
             if(parser.args.size() == 1) {
                auto &ssid = parser.args[0];
                if (ssid.empty()) {
-                 return chAT::CommandStatus::ERROR;
+                  return chAT::CommandStatus::ERROR;
                }
 
                int res = WiFi.begin(ssid.c_str());
@@ -276,11 +276,11 @@ void CAtHandler::add_cmds_wifi_station() {
             else if (parser.args.size() == 2) {
                auto &ssid = parser.args[0];
                if (ssid.empty()) {
-                 return chAT::CommandStatus::ERROR;
+                  return chAT::CommandStatus::ERROR;
                }
                auto &password = parser.args[1];
                if (password.empty()) {
-                 return chAT::CommandStatus::ERROR;
+                  return chAT::CommandStatus::ERROR;
                }
 
                int res = WiFi.begin(ssid.c_str(), password.c_str());
@@ -299,12 +299,12 @@ void CAtHandler::add_cmds_wifi_station() {
          }
          default:
             return chAT::CommandStatus::ERROR;
-      } 
+      }
    };
 
   /* ....................................................................... */
-  command_table[_RECONNECT] = [this](auto & srv, auto & parser) {
-  /* ....................................................................... */     
+   command_table[static_cast<int>(Commands::RECONNECT)] =  [this](auto & srv, auto & parser) {
+  /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Read: {
             String line = String(WiFi.getAutoReconnect());
@@ -333,8 +333,8 @@ void CAtHandler::add_cmds_wifi_station() {
    };
 
    /* ....................................................................... */
-   command_table[_DISCONNECT] = [this](auto & srv, auto & parser) {
-   /* ....................................................................... */     
+   command_table[static_cast<int>(Commands::DISCONNECT)] =  [this](auto & srv, auto & parser) {
+   /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Run: {
             WiFi.disconnect();
@@ -357,12 +357,12 @@ void CAtHandler::add_cmds_wifi_station() {
          }
          default:
             return chAT::CommandStatus::ERROR;
-      } 
+      }
    };
-   
+
    /* ....................................................................... */
-   command_table[_MACSTA] = [this](auto & srv, auto & parser) {
-   /* ....................................................................... */     
+   command_table[static_cast<int>(Commands::MACSTA)] =  [this](auto & srv, auto & parser) {
+   /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Read: {
             srv.write_response_prompt();
@@ -379,8 +379,8 @@ void CAtHandler::add_cmds_wifi_station() {
 
 
    /* ....................................................................... */
-   command_table[_AUTOCONNECT] = [this](auto & srv, auto & parser) {
-   /* ....................................................................... */     
+   command_table[static_cast<int>(Commands::AUTOCONNECT)] =  [this](auto & srv, auto & parser) {
+   /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
             if (parser.args.size() != 1) {
@@ -406,8 +406,8 @@ void CAtHandler::add_cmds_wifi_station() {
    };
 
    /* ....................................................................... */
-   command_table[_IPSTA] = [this](auto & srv, auto & parser) {
-   /* ....................................................................... */     
+   command_table[static_cast<int>(Commands::IPSTA)] =  [this](auto & srv, auto & parser) {
+   /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
             if (parser.args.size() != 1) {
@@ -454,10 +454,10 @@ void CAtHandler::add_cmds_wifi_station() {
             return chAT::CommandStatus::ERROR;
       }
    };
-   
+
    /* ....................................................................... */
-   command_table[_HOSTNAME] = [this](auto & srv, auto & parser) {
-   /* ....................................................................... */     
+   command_table[static_cast<int>(Commands::HOSTNAME)] =  [this](auto & srv, auto & parser) {
+   /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Read: {
             srv.write_response_prompt();
@@ -488,7 +488,7 @@ void CAtHandler::add_cmds_wifi_station() {
    };
 
    /* ....................................................................... */
-   command_table[_IPV6] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::IPV6)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Read: {
@@ -507,7 +507,7 @@ void CAtHandler::add_cmds_wifi_station() {
    };
 
    /* ....................................................................... */
-   command_table[_GETRSSI] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::GETRSSI)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Read: {
@@ -522,7 +522,7 @@ void CAtHandler::add_cmds_wifi_station() {
    };
 
    /* ....................................................................... */
-   command_table[_GETSSID] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::GETSSID)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Read: {
@@ -537,7 +537,7 @@ void CAtHandler::add_cmds_wifi_station() {
    };
 
    /* ....................................................................... */
-   command_table[_GETBSSID] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::GETBSSID)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Read: {

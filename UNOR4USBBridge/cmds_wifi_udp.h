@@ -8,7 +8,7 @@ void CAtHandler::add_cmds_wifi_udp() {
 /* -------------------------------------------------------------------------- */   
    
    /* ....................................................................... */
-   command_table[_UDPBEGIN] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPBEGIN)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -90,7 +90,7 @@ void CAtHandler::add_cmds_wifi_udp() {
 
 
    /* ....................................................................... */
-   command_table[_UDPBEGINMULTI] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPBEGINMULTI)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -150,7 +150,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    
    
    /* ....................................................................... */
-   command_table[_UDPBEGINPACKET] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPBEGINPACKET)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -187,7 +187,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    };
 
    /* ....................................................................... */
-   command_table[_UDPBEGINPACKETMULTI] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPBEGINPACKETMULTI)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -224,7 +224,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    };
 
    /* ....................................................................... */
-   command_table[_UDPBEGINPACKETIP] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPBEGINPACKETIP)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -277,7 +277,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    };
 
    /* ....................................................................... */
-   command_table[_UDPBEGINPACKETNAME] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPBEGINPACKETNAME)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -325,7 +325,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    };
 
    /* ....................................................................... */
-   command_table[_UDPENDPACKET] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPENDPACKET)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -363,7 +363,7 @@ void CAtHandler::add_cmds_wifi_udp() {
 
    
    /* ....................................................................... */
-   command_table[_UDPWRITE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPWRITE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -439,7 +439,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    };
 
    /* ....................................................................... */
-   command_table[_UDPPARSE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPPARSE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -479,7 +479,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    };
 
    /* ....................................................................... */
-   command_table[_UDPAVAILABLE] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPAVAILABLE)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -513,7 +513,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    };
 
    /* ....................................................................... */
-   command_table[_UDPREAD] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPREAD)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
@@ -565,7 +565,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    };
 
    /* ....................................................................... */
-   command_table[_UDPPEEK] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPPEEK)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       
       switch (parser.cmd_mode) {
@@ -599,7 +599,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    };
 
    /* ....................................................................... */
-   command_table[_UDPFLUSH] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPFLUSH)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -632,7 +632,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    };
 
    /* ....................................................................... */
-   command_table[_UDPREMOTEIP] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPREMOTEIP)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -666,7 +666,7 @@ void CAtHandler::add_cmds_wifi_udp() {
    };
 
    /* ....................................................................... */
-   command_table[_UDPREMOTEPORT] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPREMOTEPORT)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
         
@@ -704,7 +704,7 @@ void CAtHandler::add_cmds_wifi_udp() {
 
 
    /* ....................................................................... */
-   command_table[_UDPSTOP] = [this](auto & srv, auto & parser) {
+   command_table[static_cast<int>(Commands::UDPSTOP)] =  [this](auto & srv, auto & parser) {
    /* ....................................................................... */     
       switch (parser.cmd_mode) {
          case chAT::CommandMode::Write: {
