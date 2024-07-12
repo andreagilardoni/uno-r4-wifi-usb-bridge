@@ -136,7 +136,7 @@ public:
    /* Used by cmds_preferences */
    std::vector<std::uint8_t> pref_buf;
 
-   constexpr CAtHandler(HardwareSerial *s);
+   CAtHandler(HardwareSerial *s);
    CAtHandler() = delete ;
    static void onWiFiEvent(WiFiEvent_t event);
    void run();
